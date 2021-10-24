@@ -8,12 +8,13 @@ namespace Game_Tiia
         public static void WhileOnAdventure()
         {
             WelcomeToForest();
+            
             while (true)
             {
                 WanderingAround();
                 int monsterOrNot = Randomizer();
 
-                switch (monsterOrNot)
+                switch (monsterOrNot) //utgör vilket monster man träffar
                 {
                     case 1:
                         Console.WriteLine("It's so quiet and peaceful... a little bit too quiet maybe, but no monsters on sight lyckily.. Enjoy while you can!");
@@ -51,8 +52,8 @@ namespace Game_Tiia
                         Attack();
                         break;
                 }
-                Console.Write("Do you want to continue the adventure? (Y/N) ");
-                var input = Console.ReadLine().ToUpper();
+                
+                string input = DoYouWantToContinue();
 
                 if (input == "Y") continue;
                 else if (input == "N") break;
@@ -64,7 +65,13 @@ namespace Game_Tiia
             }
         }
 
-        private static int Randomizer()
+        private static void WelcomeToForest() //Början av äventyret
+        {
+            Console.WriteLine("You stand on the edge of the finnish forest of folklore called 'Sysimetsä'. Dreadful monsters are lurking in every corner... Do you have the courage to enter?");
+            Console.ReadLine();
+        }       
+
+        private static int Randomizer() //genererar ett nummer mellan 1 och 10 som används för att utgöra vilket monster man träffar
         {
             Random rand = new Random();
             var monsterOrNot = rand.Next(1, 11);
@@ -72,29 +79,25 @@ namespace Game_Tiia
             return monsterOrNot;
         }
 
-        private static void WanderingAround()
+        private static void WanderingAround() //ser lite ut som små fotsteg (?)
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Console.Write(" °");
                 Thread.Sleep(250);
                 Console.Write(" o");
                 Thread.Sleep(250);
             }
+
+            Console.WriteLine();
         }
 
-        private static void WelcomeToForest()
-        {
-            Console.WriteLine("You stand on the edge of the finnish forest of folklore called 'Sysimetsä'. Dreadful monsters are lurking in every corner... Do you have the courage to enter?");
-            Console.ReadLine();
-        }
-
-        private static void SuperMonsterEncounter()
+        private static void SuperMonsterEncounter() //En metod för när man träffar ett kraftigare monster
         {
             
         }
 
-        private static void Attack()
+        private static void Attack() //Själva slagsmålet
         {
             Console.WriteLine("You take your sword and slash the monster! ");
         }
@@ -102,6 +105,13 @@ namespace Game_Tiia
         private static void AttackSuperMonster()
         {
             throw new NotImplementedException();
+        }
+
+        private static string DoYouWantToContinue()
+        {
+            Console.Write("Do you want to continue the adventure? (Y/N) ");
+            var input = Console.ReadLine().ToUpper();
+            return input;
         }
     }
 }
