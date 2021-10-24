@@ -11,6 +11,9 @@ namespace Game_Tiia
         {
             MainHeader();
             Player player = new Player();
+            player.Level = 1;
+            player.Exp = 0;
+            player.Hp = 0;
             
             AskForUsername();           
             player.Name= Console.ReadLine().ToString();
@@ -32,8 +35,8 @@ namespace Game_Tiia
 
                 switch (menuChoise)
                 {
-                    case 1: Adventure.WhileOnAdventure(); break;
-                    case 2: ShowDetails(player.Name); break;
+                    case 1: AdventureTime.WhileOnAdventure(); break;
+                    case 2: ShowDetails(player.Name, player.Level, player.Exp, player.Hp) ; break;
                     case 3: Environment.Exit(0); break;
 
                     default:
@@ -53,17 +56,17 @@ namespace Game_Tiia
 
         public static void AskForUsername() //Frågar om användarnamnet
         {
-            Console.Write("Enter your username: ");
+            Console.Write("Welcome traveler! What should we call you? ");
             Console.ForegroundColor = ConsoleColor.Cyan;
         }
 
-        private static void ShowDetails(string username)
+        private static void ShowDetails(string username, int level, int exp, int hp)
         {
             Console.WriteLine("═════════════════════════");
             Console.WriteLine($"Name:       {username}");
-            Console.WriteLine($"Level:      "); //TODO: lägg till level här
-            Console.WriteLine($"HP:      /200"); //TODO: lägg till hp
-            Console.WriteLine($"Exp:     /100");
+            Console.WriteLine($"Level:      {level}"); //TODO: lägg till level här
+            Console.WriteLine($"HP:         {hp}/200"); //TODO: lägg till hp
+            Console.WriteLine($"Exp:        {exp}/100");
             Console.WriteLine($"Gold:      ");
             Console.WriteLine($"Strenght:  ");
             Console.WriteLine($"Toughness: ");
