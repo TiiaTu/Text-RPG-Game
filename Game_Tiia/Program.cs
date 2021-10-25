@@ -13,7 +13,9 @@ namespace Game_Tiia
             Player player = new Player();
             player.Level = 1;
             player.Exp = 0;
-            player.Hp = 0;
+            player.Hp = 200;
+            player.Strenght = 5;
+            player.Toughness = 0;
             
             AskForUsername();           
             player.Name= Console.ReadLine().ToString();
@@ -35,8 +37,8 @@ namespace Game_Tiia
 
                 switch (menuChoise)
                 {
-                    case 1: AdventureTime.WhileOnAdventure(); break;
-                    case 2: ShowDetails(player.Name, player.Level, player.Exp, player.Hp) ; break;
+                    case 1: AdventureTime.WhileOnAdventure(player); break;
+                    case 2: ShowDetails(player.Name, player.Level, player.Exp, player.Hp, player.Gold, player.Strenght, player.Toughness) ; break;
                     case 3: Environment.Exit(0); break;
 
                     default:
@@ -60,17 +62,21 @@ namespace Game_Tiia
             Console.ForegroundColor = ConsoleColor.Cyan;
         }
 
-        private static void ShowDetails(string username, int level, int exp, int hp)
+        private static void ShowDetails(string username, int level, int exp, int hp, int gold, int strenght, int toughness)
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("═════════════════════════");
+            Console.ResetColor();
             Console.WriteLine($"Name:       {username}");
-            Console.WriteLine($"Level:      {level}"); //TODO: lägg till level här
-            Console.WriteLine($"HP:         {hp}/200"); //TODO: lägg till hp
+            Console.WriteLine($"Level:      {level}");
+            Console.WriteLine($"HP:         {hp}/200"); 
             Console.WriteLine($"Exp:        {exp}/100");
-            Console.WriteLine($"Gold:      ");
-            Console.WriteLine($"Strenght:  ");
-            Console.WriteLine($"Toughness: ");
+            Console.WriteLine($"Gold:       {gold}");
+            Console.WriteLine($"Strenght:   {strenght}");
+            Console.WriteLine($"Toughness:  {toughness}");
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("═════════════════════════");
+            Console.ResetColor();
             Console.WriteLine("Press any key to go back to MENU");
             Console.ReadLine();
             Console.Clear();

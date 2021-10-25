@@ -5,77 +5,107 @@ namespace Game_Tiia
 {
     class AdventureTime
     {
-        public static void WhileOnAdventure()
+        public static void WhileOnAdventure(Player player)
         {
             WelcomeToForest();
-            
-            while (true)
+
+            while (player.Level < 10)
             {
                 WanderingAround();
                 int monsterOrNot = Randomizer();
 
-                switch (monsterOrNot) //utgör vilket monster man träffar
+                if (monsterOrNot == 1)
                 {
-                    case 1:
-                        Console.WriteLine("It's so quiet and peaceful... a little bit too quiet maybe, but no monsters on sight lyckily.. Enjoy while you can!");
-                        Console.WriteLine("\n[Press enter to continue]");
-                        Console.ReadKey();
-                        break;
-                    case 2:
-                        SpecificMonster iku = new SpecificMonster();
-                        iku.Name = "A dreadful IKU-TURSO";
-                        Console.WriteLine($"You arrive at a deep dark lake. There is a small old boat on the shore, so you decide to take it. In the middle of the lake the water around you starts suddenly bubbling violently!! You see a climpse of {iku.Name} that is trying to capsize the boat!!");
-                        Attack();
-                        break;
-                    case 3:
-                        SpecificMonster hiisi = new SpecificMonster();
-                        hiisi.Name = "A mysterious HIISI";
-                        Console.WriteLine($"Oh no! There is {hiisi.Name} standing right in front of you! You have tresspassed it's territory!");
-                        Attack();
-                        break;
-                    case 5:
-                        SpecificMonster näkki = new SpecificMonster();
-                        näkki.Name = "A scary NÄKKI";
-                        Console.WriteLine($"You arrive in a dark river in the forest. The only way is to swim across {näkki.Name}!");
-                        Attack();
-                        break;
-                    case 10:
-                        SpecificMonster louhi = new SpecificMonster();
-                        louhi.Name = "An nearly unbeatable LOUHI";
-                        Console.WriteLine($"Why is the ground shaking all of a sudden? Is it.. Could it be.. Yes it's {louhi.Name}!! Good luck fighting this one.. ");
-                        SuperMonsterEncounter(); break;
-
-                    default:
-                        SpecificMonster peikko = new SpecificMonster();
-                        peikko.Name = "A fearsome PEIKKO";
-                        Console.WriteLine($"Oh no! You have encountered {peikko.Name}!");
-                        Attack();
-                        break;
+                    Message("It's so quiet and peaceful... a little bit too quiet maybe, but no monsters on sight lyckily.. Enjoy while you can!");
+                    PressEnter();
                 }
-                
+                else if (monsterOrNot == 5)
+                {
+                    Message("Oh look! You meet another travelers that turns out to be extremely friendly! You chat with them and regain some of your powers! In exchange for some food, they give you a peace of GOLD!");
+                    player.Gold++;
+                    player.Hp += 5;
+                }
+                else
+                {
+                    MonsterEncounter(player);
+
+                }
+
+                if(player.)
+
                 string input = DoYouWantToContinue();
 
                 if (input == "Y") continue;
                 else if (input == "N") break;
                 else
                 {
-                    Console.WriteLine("Enter 'Y' or 'N' ");
+                    Message("Enter 'Y' or 'N' ");
                     Console.ReadLine();
+                    Console.Clear();
                 }
+            }
+        }
+
+        private static void Message(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        private static void PressEnter()
+        {
+            Message("\n[Press enter to continue]");
+            Console.ReadKey();
+        }
+
+        private static void MonsterEncounter(Player player)
+        {
+            int level = player.Level;
+
+            if (level < 3)
+            {
+                SpecificMonster monster1 = new SpecificMonster();
+                monster1.Name = "an old and crumpy Goblin with stinky feet";
+                monster1.Hp = 50;
+                Attack(player, monster1);
+            }
+
+            else if (level > 3 && level <= 6)
+            {
+                SpecificMonster monster2 = new SpecificMonster();
+                monster2.Name = "an extremely unpleasant Troll";
+                monster2.Hp = 75;
+                Message("While strolling in the woods");
+                Attack(player, monster2);
+            }
+
+            else if (level > 6 && level <= 8)
+            {
+                SpecificMonster monster3 = new SpecificMonster();
+                monster3.Name = "a loud and hairy Orc with an axe";
+                monster3.Hp = 100;
+                Attack(player, monster3);
+            }
+
+            else
+            {
+                SpecificMonster bossMonster = new SpecificMonster();
+                bossMonster.Name = "a giant Giant with giant beard";
+                bossMonster.Hp = 150;
+                Attack(player, bossMonster);
             }
         }
 
         private static void WelcomeToForest() //Början av äventyret
         {
-            Console.WriteLine("You stand on the edge of the finnish forest of folklore called 'Sysimetsä'. Dreadful monsters are lurking in every corner... Do you have the courage to enter?");
+            Message("You stand on the edge of the forest of folklore. Dreadful monsters are lurking in every corner... Do you have the courage to enter?");
             Console.ReadLine();
-        }       
+        }
 
         private static int Randomizer() //genererar ett nummer mellan 1 och 10 som används för att utgöra vilket monster man träffar
         {
             Random rand = new Random();
             var monsterOrNot = rand.Next(1, 11);
-            Console.WriteLine(monsterOrNot);
+            Console.WriteLine(monsterOrNot); //TA BORT I SLUTET
             return monsterOrNot;
         }
 
@@ -89,17 +119,32 @@ namespace Game_Tiia
                 Thread.Sleep(250);
             }
 
-            Console.WriteLine();
+            Message("");
         }
 
         private static void SuperMonsterEncounter() //En metod för när man träffar ett kraftigare monster
         {
-            
+
+
         }
 
-        private static void Attack() //Själva slagsmålet
+        private static void Attack(Player player, SpecificMonster monster) //Själva slagsmålet
         {
-            Console.WriteLine("You take your sword and slash the monster! ");
+            ShowHp(player, monster);
+            Random rnd = new Random();
+            var damageGiven = rnd.Next(player.Strenght, player.Strenght * 2);
+
+            Message($"You swing your sword and slash the monster! The monster loses {damageGiven} hp");
+            monster.Hp -= damageGiven;
+            Message($"Oh no you made it angry, the monster rages towards you and hits you! You lose {damageGiven} hp");
+            player.Hp -= damageGiven-player.Toughness;
+        }
+
+        private static void ShowHp(Player player, SpecificMonster monster)
+        {
+            Message($"{player.Name}: {player.Hp}");
+            Message($"{monster.Name}: {monster.Hp}");
+            Message("\nGood luck!");
         }
 
         private static void AttackSuperMonster()
