@@ -29,9 +29,9 @@ namespace Game_Tiia
                 Console.Write(">> ");
 
                 int menuChoise = 0;
-                //Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 var input = int.TryParse(Console.ReadLine(), out menuChoise);
-                //Console.ResetColor();
+                Console.ResetColor();
 
                 switch (menuChoise)
                 {
@@ -74,14 +74,6 @@ namespace Game_Tiia
             Console.WriteLine("Press any key to go back to MENU");
             Console.ReadLine();
             Console.Clear();
-        }
-
-        public static void Attack()
-        {
-            Random random = new Random();
-            //int strenghtLost = random.Next(, )
-        }
-
-        
+        }       
     }
 }

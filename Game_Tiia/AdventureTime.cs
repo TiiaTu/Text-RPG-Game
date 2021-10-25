@@ -24,7 +24,7 @@ namespace Game_Tiia
                     case 2:
                         SpecificMonster iku = new SpecificMonster();
                         iku.Name = "A dreadful IKU-TURSO";
-                        Console.WriteLine($"You arrive at a deep dark lake. There is a little old boat on the shore, so you decide to take it. In the middle of the lake the water around you starts suddenly bubbling violently!! You see a climpse of {iku.Name} that is trying to capsize the boat!!");
+                        Console.WriteLine($"You arrive at a deep dark lake. There is a small old boat on the shore, so you decide to take it. In the middle of the lake the water around you starts suddenly bubbling violently!! You see a climpse of {iku.Name} that is trying to capsize the boat!!");
                         Attack();
                         break;
                     case 3:
