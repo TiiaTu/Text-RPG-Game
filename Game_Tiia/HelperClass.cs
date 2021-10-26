@@ -21,7 +21,12 @@ namespace Game_Tiia
         {
             Console.WriteLine($"{player.Name}: {player.Hp}");
             Console.WriteLine($"{monster.Name}: {monster.Hp}");
-            Console.WriteLine("\nGood luck!");
+        }
+
+        public static void PressEnter()
+        {
+            Console.WriteLine("\n[Press enter to continue]");
+            Console.ReadKey();
         }
     }
 }

@@ -11,9 +11,7 @@ namespace Game_Tiia
             Player player = new Player(); //instansierar en spelare
             AskForName(player);
 
-            bool gameOn = true;
-
-            while (gameOn)
+            while (player.Level<10&&player.Hp>0)
             {
                 Menu.MainMenu();
                 int menuChoise = UserInput();
@@ -26,7 +24,10 @@ namespace Game_Tiia
 
                     default: break;
                 }
+
             }
+            Visual.ChangeToMagenta();
+            Console.WriteLine("*.*.*. Congratulations!! You won The Game!.*.*.*");
         }
 
         private static string AskForName(Player player)

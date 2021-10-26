@@ -9,7 +9,7 @@ namespace Game_Tiia
         {
             WelcomeToForest();
 
-            while (player.Level < 10)
+            while (player.Hp>0)
             {
                 WanderingAround();
                 int monsterOrNot = Randomizer();
@@ -41,6 +41,7 @@ namespace Game_Tiia
                     Console.ReadLine();
                     Console.Clear();
                 }
+                Console.Clear();
             }
         }
 
@@ -49,11 +50,7 @@ namespace Game_Tiia
             Console.WriteLine(message);
         }
 
-        private static void PressEnter()
-        {
-            Message("\n[Press enter to continue]");
-            Console.ReadKey();
-        }
+        
 
         private static void MonsterEncounter(Player player)
         {
@@ -64,6 +61,8 @@ namespace Game_Tiia
                 SpecificMonster monster1 = new SpecificMonster();
                 monster1.Name = "an old and crumpy Goblin with stinky feet";
                 monster1.Hp = 50;
+                monster1.ExpGiven = 25;
+                Message($"You stumble across {monster1.Name}! He looks hungry.. \nGood luck! ");
                 Attack(player, monster1);
             }
 
@@ -110,6 +109,8 @@ namespace Game_Tiia
 
         private static void WanderingAround() //ser lite ut som små fotsteg (?)
         {
+            Visual.ChangeToCyan();
+
             for (int i = 0; i < 6; i++)
             {
                 Console.Write(" °");
@@ -119,6 +120,7 @@ namespace Game_Tiia
             }
 
             Message("");
+            Console.ResetColor();
         }
 
         private static void SuperMonsterEncounter() //En metod för när man träffar ett kraftigare monster
@@ -128,20 +130,36 @@ namespace Game_Tiia
         }
 
         private static void Attack(Player player, SpecificMonster monster) //Själva slagsmålet
-        {
-            HelperClass.ShowHp(player, monster);
-            
+        {         
             Random rnd = new Random();
             var damageGiven = rnd.Next(player.Strenght, player.Strenght * 2);
             var damageTaken = rnd.Next(player.Strenght, player.Strenght * 2);
 
-            Message($"You swing your sword and slash the monster! The monster loses {damageGiven} hp");
-            monster.Hp -= damageGiven;
-            Message($"Oh no you made it angry, the monster rages towards you and hits you! You lose {damageTaken} hp");
-            player.Hp -= damageGiven-player.Toughness;
-            
-            HelperClass.ShowHp(player, monster);
+            while (true)
+            {
+                Message($"You swing your sword and slash the monster! The monster loses {damageGiven} hp");
+                monster.Hp -= damageGiven;
+                Message($"AAAH! The monster rages towards you and hits you! You lose {damageTaken} hp");
+                player.Hp -= (damageGiven - player.Toughness);
 
+                HelperClass.ShowHp(player, monster);
+
+                if(monster.Hp<=0)
+                {
+                    Console.WriteLine($"\nVictory!! You killed the monster and gained {monster.ExpGiven} exp.");
+                    player.Exp=+monster.ExpGiven;
+                }
+                else if(player.Hp<=0)
+                {
+                    Console.WriteLine("The last hit was too much, you were killed by the monster!");
+                    break;
+                }
+
+                HelperClass.PressEnter();
+                Console.Clear();
+            }
+
+            
         }
 
         

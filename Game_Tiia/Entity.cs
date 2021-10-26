@@ -16,9 +16,9 @@ namespace Game_Tiia
             get => hp;
             set
             {
-                if (value <= 0)
+                if (hp<= 0)
                 {
-                    value = hp;
+                    Console.WriteLine("GAME OVER!");
                 }
             }
         }
