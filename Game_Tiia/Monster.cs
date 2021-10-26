@@ -2,8 +2,8 @@
 
 namespace Game_Tiia
 {
-    class Monster
+    class Monster : Entity
     {
-        public string Name { get; set; }      
+        public string Name { get; set; } = "";  
     }
 }

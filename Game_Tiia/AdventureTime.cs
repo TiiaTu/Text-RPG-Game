@@ -17,21 +17,19 @@ namespace Game_Tiia
                 if (monsterOrNot == 1)
                 {
                     Message("It's so quiet and peaceful... a little bit too quiet maybe, but no monsters on sight lyckily.. Enjoy while you can!");
-                    PressEnter();
                 }
                 else if (monsterOrNot == 5)
                 {
-                    Message("Oh look! You meet another travelers that turns out to be extremely friendly! You chat with them and regain some of your powers! In exchange for some food, they give you a peace of GOLD!");
+                    Message("Oh look! You meet another travelers that turns out to be extremely friendly! \nYou chat with them and regain some of your powers! \nIn exchange for some food, they give you a peace of GOLD!");
                     player.Gold++;
                     player.Hp += 5;
                 }
                 else
                 {
                     MonsterEncounter(player);
-
                 }
 
-                if(player.)
+                //if(player.)
 
                 string input = DoYouWantToContinue();
 
@@ -97,8 +95,9 @@ namespace Game_Tiia
 
         private static void WelcomeToForest() //Början av äventyret
         {
-            Message("You stand on the edge of the forest of folklore. Dreadful monsters are lurking in every corner... Do you have the courage to enter?");
+            Message("You stand on the edge of the old, dark and spine-chilling forest. \nDreadful monsters are lurking in every corner waiting for the right moment to gobble up innocent travelers... \nDo you have the courage to enter?");
             Console.ReadLine();
+            Message("The adventure begins...");
         }
 
         private static int Randomizer() //genererar ett nummer mellan 1 och 10 som används för att utgöra vilket monster man träffar
@@ -130,22 +129,22 @@ namespace Game_Tiia
 
         private static void Attack(Player player, SpecificMonster monster) //Själva slagsmålet
         {
-            ShowHp(player, monster);
+            HelperClass.ShowHp(player, monster);
+            
             Random rnd = new Random();
             var damageGiven = rnd.Next(player.Strenght, player.Strenght * 2);
+            var damageTaken = rnd.Next(player.Strenght, player.Strenght * 2);
 
             Message($"You swing your sword and slash the monster! The monster loses {damageGiven} hp");
             monster.Hp -= damageGiven;
-            Message($"Oh no you made it angry, the monster rages towards you and hits you! You lose {damageGiven} hp");
+            Message($"Oh no you made it angry, the monster rages towards you and hits you! You lose {damageTaken} hp");
             player.Hp -= damageGiven-player.Toughness;
+            
+            HelperClass.ShowHp(player, monster);
+
         }
 
-        private static void ShowHp(Player player, SpecificMonster monster)
-        {
-            Message($"{player.Name}: {player.Hp}");
-            Message($"{monster.Name}: {monster.Hp}");
-            Message("\nGood luck!");
-        }
+        
 
         private static void AttackSuperMonster()
         {

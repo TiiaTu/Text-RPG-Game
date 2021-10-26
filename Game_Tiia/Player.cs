@@ -1,15 +1,19 @@
 ﻿using System;
 
 namespace Game_Tiia
-{ 
-    public class Player
+{
+    public class Player : Entity
     {
-        public string Name { get; set; }
-        public int Level { get; set; }
-        public int Exp { get; set; }
-        public int Hp { get; set; }
-        public int Strenght { get; set; }
-        public int Toughness { get; set; }
-        public int Gold { get; set; }
+        public int Level { get; set; } = 1;
+        public int Exp { get; set; } = 0;
+        public int Strenght { get; set; } = 5;
+        public int Toughness { get; set; } = 0;
+        public int Gold { get; set; } = 0;
+
+        public static void GetGold()
+        {
+            //kodhär
+        }
     }
+    
 }
