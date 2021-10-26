@@ -10,17 +10,8 @@ namespace Game_Tiia
     {
         public string Name { get; set; } = "";
 
-        private int hp = 100;
-        public int Hp //TODO: kolla att dethär blir rätt
-        {
-            get => hp;
-            set
-            {
-                if (hp<= 0)
-                {
-                    Console.WriteLine("GAME OVER!");
-                }
-            }
+        public int Hp { get; set; } = 200; //TODO: kolla att dethär blir rätt
+        
         }
     }
-}
+

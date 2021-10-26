@@ -6,12 +6,13 @@ namespace Game_Tiia
     {
         static void Main(string[] args)
         {
+            Menu.StartScreen();
             Menu.MainHeader();
 
             Player player = new Player(); //instansierar en spelare
             AskForName(player);
 
-            while (player.Level<10&&player.Hp>0)
+            while (player.Hp>0)
             {
                 Menu.MainMenu();
                 int menuChoise = UserInput();
@@ -24,10 +25,13 @@ namespace Game_Tiia
 
                     default: break;
                 }
-
             }
-            Visual.ChangeToMagenta();
-            Console.WriteLine("*.*.*. Congratulations!! You won The Game!.*.*.*");
+
+            if (player.Level > 10)
+            {
+                Visual.ChangeToMagenta();
+                Console.WriteLine("\n*.*.*. Congratulations!! You won The Game!.*.*.*");
+            }
         }
 
         private static string AskForName(Player player)
@@ -63,7 +67,9 @@ namespace Game_Tiia
             Visual.ChangeToMagenta();
             Console.WriteLine("═════════════════════════");
             Console.ResetColor();
+            Visual.ChangeToCyan();
             Console.WriteLine("Press any key to go back to MENU");
+            Console.ResetColor();
             Console.ReadLine();
             Console.Clear();
         }

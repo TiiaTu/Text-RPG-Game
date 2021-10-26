@@ -2,7 +2,7 @@
 
 namespace Game_Tiia
 {
-    class SpecificMonster : Monster
+    class SpecificMonster : Entity
     {
         public int ExpGiven { get; set; } = 0;
 
