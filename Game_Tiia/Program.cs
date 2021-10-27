@@ -12,7 +12,7 @@ namespace Game_Tiia
             Player player = new Player(); //instansierar en spelare
             AskForName(player);
 
-            while (player.Hp>0)
+            while (player.Hp > 0)
             {
                 Menu.MainMenu();
                 int menuChoise = UserInput();
@@ -29,8 +29,7 @@ namespace Game_Tiia
 
             if (player.Level > 10)
             {
-                Visual.ChangeToMagenta();
-                Console.WriteLine("\n*.*.*. Congratulations!! You won The Game!.*.*.*");
+                PlayerWins();
             }
         }
 
@@ -72,6 +71,11 @@ namespace Game_Tiia
             Console.ResetColor();
             Console.ReadLine();
             Console.Clear();
+        }
+        private static void PlayerWins()
+        {
+            Visual.ChangeToMagenta();
+            Console.WriteLine("\n*.*.*. Congratulations!! You won The Game!.*.*.*");
         }
     }
 }

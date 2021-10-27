@@ -25,7 +25,7 @@ namespace Game_Tiia
                         player.Hp += 10;
                         break;
                     case 7:
-                        Message("You start to feel exhausted and decide stop and rest for a while. Something caughts your attention.. sounds like running water! \nYou proceed to check where it's coming from and find a small stream of water. You decide to drink from the stream and gain 25 hp! ");
+                        Message("You start to feel exhausted and decide stop and rest for a while. Something caughts your attention.. sounds like running water! \nYou proceed to check where it's coming from and find a small stream of water. You take a sip from the stream and gain 25 hp! ");
                         player.Hp += 25;
                         break;
                     default:
@@ -87,7 +87,7 @@ namespace Game_Tiia
         {
             Message("You stand on the edge of the old, dark and spine-chilling forest. \nDreadful monsters are lurking in every corner waiting for the right moment to gobble up innocent travelers... \nDo you have the courage to enter?");
             Console.ReadLine();
-            Console.Write("The adventure begins...");
+            Console.Write("And so begins the adventure...");
         }
 
         private static int Randomizer() //genererar ett nummer mellan 1 och 10 som används för att utgöra vilket monster man träffar
@@ -97,7 +97,6 @@ namespace Game_Tiia
             Console.WriteLine(monsterOrNot); //TA BORT I SLUTET
             return monsterOrNot;
         }
-
 
         private static void WanderingAround() //ser lite ut som små fotsteg (?)
         {

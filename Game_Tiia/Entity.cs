@@ -10,8 +10,8 @@ namespace Game_Tiia
     {
         public string Name { get; set; } = "";
 
-        public int Hp { get; set; } = 200; //TODO: kolla att dethär blir rätt
-        
-        }
+        public int Hp { get; set; } = 200;
     }
+}
+
 

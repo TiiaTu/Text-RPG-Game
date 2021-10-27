@@ -12,7 +12,7 @@ namespace Game_Tiia
 
         public static void GetGold()
         {
-            //kodhär
+            
         }
     }
     
