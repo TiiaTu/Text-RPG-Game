@@ -25,6 +25,9 @@ namespace Game_Tiia
             Console.WriteLine("══════════════════════════════");
             Console.Clear();
         }
+
+        
+
         public static void ChangeToCyan() //ändrar färgen på texten till cyan
         {
             Console.ForegroundColor = ConsoleColor.Cyan;

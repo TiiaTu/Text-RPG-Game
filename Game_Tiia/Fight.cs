@@ -37,11 +37,13 @@ namespace Game_Tiia
                     Console.ResetColor();
                     Console.WriteLine($"You killed the monster and gained {monster.ExpGiven} exp.");
                     player.Exp += monster.ExpGiven;
+                    Monster.DropGold(player, monster);
 
                     Visual.YellowLine();
                     Console.WriteLine($"Level     : {player.Level}");
                     Console.WriteLine($"Exp       : {player.Exp} exp");
-                    Console.Write($"Hp        : {player.Hp} hp");
+                    Console.WriteLine($"Hp        : {player.Hp} hp");
+                    Console.Write($"Gold      : {player.Gold}");
                     Visual.YellowLine();
                     break;
                 }

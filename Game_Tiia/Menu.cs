@@ -40,6 +40,10 @@ namespace Game_Tiia
             Console.WriteLine("Exit Game\n");
             Console.Write(">> ");
         }
+        internal static void ShopMenu()
+        {
+            Console.WriteLine("");
+        }
 
         internal static void StartScreen()
         {
