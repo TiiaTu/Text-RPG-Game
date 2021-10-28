@@ -12,6 +12,8 @@ namespace Game_Tiia
         {
             int damageGiven, damageGiven2, damageTaken, damageTaken2;
             Randomizer(player, out damageGiven, out damageGiven2, out damageTaken, out damageTaken2);
+            
+            Helper.ShowHp(player, monster);
 
             do
             {
@@ -35,14 +37,20 @@ namespace Game_Tiia
                     Console.ResetColor();
                     Console.WriteLine($"You killed the monster and gained {monster.ExpGiven} exp.");
                     player.Exp += monster.ExpGiven;
-                    Console.WriteLine($"\nLevel    : {player.Level}");
+
+                    Visual.YellowLine();
+                    Console.WriteLine($"Level     : {player.Level}");
                     Console.WriteLine($"Exp       : {player.Exp} exp");
-                    Console.WriteLine($"Hp        : {player.Hp} hp");
+                    Console.Write($"Hp        : {player.Hp} hp");
+                    Visual.YellowLine();
                     break;
                 }
                 else if (player.Hp <= 0)
                 {
                     player.Hp = 0;
+                    Visual.ChangeToCyan();
+                    Console.Write("GAME OVER :( ");
+                    Console.ResetColor();
                     Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
                     break;
                 }

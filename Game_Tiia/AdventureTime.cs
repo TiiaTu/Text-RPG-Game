@@ -50,37 +50,40 @@ namespace Game_Tiia
             if (level < 3)
             {
                 Monster monster1 = new();
-                monster1.Name = "an old and crumpy Goblin with stinky feet";
+                monster1.Name = "Goblin with stinky feet";
                 monster1.Hp = 50;
-                monster1.ExpGiven = 25;
-                Message($"You stumble across {monster1.Name}! He looks kind of hungry...  Good luck! ");
+                monster1.ExpGiven = 60;
+                Message($"You stumble across an old and crumpy-looking {monster1.Name}! He looks kind of hungry...  Good luck! ");
                 Fight.AttackMonster(player, monster1);
             }
             else if (level > 3 && level <= 6)
             {
                 Monster monster2 = new();
-                monster2.Name = "an extremely unpleasant Troll";
+                monster2.Name = "Troll";
                 monster2.Hp = 75;
                 monster2.ExpGiven = 50;
-                Message($"While strolling in the woods you suddenly hear heavy steps behind you. You turn around and see {monster2.Name} and it's too late to hide! ");
+                Message($"While strolling in the woods you suddenly hear steps behind you... \nYou turn around and see an extremely hideous {monster2.Name} charging straight towards you! ");
                 Fight.AttackMonster(player, monster2);
             }
             else if (level > 6 && level <= 8)
             {
                 Monster monster3 = new();
-                monster3.Name = "a loud and hairy Orc with an axe";
-                monster3.Hp = 100;
-                monster3.ExpGiven = 50;
+                monster3.Name = "Orc with an axe";
+                monster3.Hp = 105;
+                monster3.ExpGiven = 75;
+                Message($"It starts to rain and you seek for a better cover. \nWhile running around you happen to cross paths with an orc on a hunt.. \n..Here we go again! ");
                 Fight.AttackMonster(player, monster3);
             }
             else
             {
                 Monster bossMonster = new();
-                bossMonster.Name = "a giant Giant with giant beard";
+                bossMonster.Name = "Giant";
                 bossMonster.Hp = 150;
-                bossMonster.ExpGiven = 75;
+                bossMonster.ExpGiven = 95;
+                Message($"You have fought bravely and decide to take a well-earned break. Of course right at the same exact moment you... ");
                 Fight.AttackMonster(player, bossMonster);
             }
+            
         }
 
         private static void WelcomeToForest() //Början av äventyret

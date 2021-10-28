@@ -22,10 +22,19 @@ namespace Game_Tiia
         public int Toughness { get; set; } = 0;
         public int Gold { get; set; } = 20;
 
-        public static void GetGold(Player player)
+        public static void GetGold(Player player, int amountGold)
         {
-            player.Gold+=10;
-            Console.WriteLine($"Guld:   {player.Gold}");
+            player.Gold+=amountGold;
+            Console.WriteLine($"You got {amountGold} gold, and have now {player.Gold} gold");
+        }
+
+        public static void GiveGold(Player player, int amountGold)
+        {
+            Console.WriteLine($"You have: {player.Gold} gold. How much gold do you want to give? ");            
+            int.TryParse(Console.ReadLine(), out amountGold);
+            Console.WriteLine(amountGold);
+            player.Gold -= amountGold;
+            
         }
     }
 

@@ -21,7 +21,8 @@ namespace Game_Tiia
                 {
                     case 1: AdventureTime.WhileOnAdventure(player); break;
                     case 2: ShowDetails(player.Name, player.Level, player.Exp, player.Hp, player.Gold, player.Strenght, player.Toughness); break;
-                    case 3: Environment.Exit(0); break;
+                    case 3: Shop.Shop(); break;
+                    case 4: Environment.Exit(0); break;
 
                     default: break;
                 }
@@ -74,8 +75,7 @@ namespace Game_Tiia
         }
         private static void PlayerWins()
         {
-            Visual.ChangeToMagenta();
-            Console.WriteLine("\n*.*.*. Congratulations!! You won The Game!.*.*.*");
+            
         }
     }
 }

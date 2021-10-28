@@ -33,5 +33,15 @@ namespace Game_Tiia
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
         }
+        public static void YellowLine()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n--------------------------");
+            Console.ResetColor();
+        }
+        public static void SeparateLine()
+        {
+            Console.WriteLine("---------------------------\n");
+        }
     }
 }

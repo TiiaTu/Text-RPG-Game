@@ -9,20 +9,38 @@ namespace Game_Tiia
 {
     class Helper //en klass för att kontrollera olika användarrelaterade saker
     {
-        public static void CheckLevel(Player player) //spelaren uppnår en ny level när exp=100
+        public static void CheckLevel(Player player) //spelaren uppnår en ny level när exp=100 och fåt 200 hp
         {
             if (player.Exp >= 100)
             {
                 player.Level++;
-                Console.WriteLine($"Congratulation you leveled up! You are now on level {player.Level}");
+                player.Exp = 0;
+                player.Hp = 200;
+                Console.Write("\nCONGRATULATIONS you leveled up! ");
+                Console.WriteLine("You are now on level ");
+                Visual.ChangeToCyan();
+                Console.WriteLine($"{player.Level}");
+                Console.ResetColor();
                 Helper.PressEnter();
                 Console.Clear();
             }
+            else if (player.Level == 10)
+            {
+                while (true)
+                {
+                    Visual.ChangeToCyan();
+                    Console.BackgroundColor = ConsoleColor.Magenta;
+                    Thread.Sleep(100);
+                    Console.WriteLine("\n*.*.*. Congratulations!! You won The Game!.*.*.*");
+                }
+            }
         }
 
-        public static void PressEnter()
+        public static void PressEnter() //flytta eventuellt till Program?
         {
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\n[Press enter to continue]");
+            Console.ResetColor();
             Console.ReadKey();
         }
 
@@ -33,28 +51,15 @@ namespace Game_Tiia
             return input;
         }
 
-        //internal static void CheckIfAlive(Monster monster, Player player) //kontrollerar om antingen spelare eller monster är död
-        //{
-        //    ShowHp(player, monster);
-        //    if (monster.Hp <= 0)
-        //    {
-        //        monster.Hp = 0;
-        //        Console.WriteLine($"\nVICTORY!! You killed the monster and gained {monster.ExpGiven} exp.");
-        //        player.Exp = +monster.ExpGiven;
-        //        Console.WriteLine($"\nYou are on level {player.Level}, have {player.Exp} exp and {player.Hp} hp");
-        //        return;
-        //    }
-        //    else if (player.Hp <= 0)
-        //    {
-        //        player.Hp = 0;
-        //        Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
-        //    } 
-        //}
-
         public static void ShowHp(Player player, Monster monster) //visar HP på både spelare och monstret
         {
-            Console.WriteLine($"{player.Name}: [{player.Hp}] hp");
-            Console.WriteLine($"{monster.Name}: [{monster.Hp}] hp");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"\t{player.Name}: {player.Hp} hp");
+            Console.ResetColor();
+            Console.Write("  |VS| ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($" {monster.Name}: {monster.Hp} hp \n");
+            Console.ResetColor();
         }
     }
 }
