@@ -36,7 +36,13 @@ namespace Game_Tiia
             }
         }
 
-        public static void PressEnter() //flytta eventuellt till Program?
+        public static void PressEnter()
+        {
+            Console.ReadKey();
+            Console.WriteLine();
+        }
+
+        public static void EnterToContinue() //flytta eventuellt till Program?
         {
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\n[Press enter to continue]");
@@ -44,7 +50,7 @@ namespace Game_Tiia
             Console.ReadKey();
         }
 
-        public static string DoYouWantToContinue()
+            public static string DoYouWantToContinue()
         {
             Console.Write("\n-Do you want to continue the adventure?- (Y/N) ");
             var input = Console.ReadLine().ToUpper();
@@ -60,6 +66,16 @@ namespace Game_Tiia
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($" {monster.Name}: {monster.Hp} hp \n");
             Console.ResetColor();
+        }
+
+        public static void ShowStats(Player player)
+        {
+            Visual.YellowLine();
+            Console.WriteLine($"Level     : {player.Level}");
+            Console.WriteLine($"Exp       : {player.Exp} exp");
+            Console.WriteLine($"Hp        : {player.Hp} hp");
+            Console.Write($"Gold      : {player.Gold}");
+            Visual.YellowLine();
         }
     }
 }

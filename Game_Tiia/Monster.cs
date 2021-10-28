@@ -15,8 +15,6 @@ namespace Game_Tiia
 
             Console.WriteLine($"Lucky you! The monster has dropped {dropGold} peaces of GOLD!");
             Player.GetGold(player, dropGold);
-
-
         }
     }
 }

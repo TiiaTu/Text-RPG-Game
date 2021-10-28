@@ -15,59 +15,64 @@ namespace Game_Tiia
             
             Helper.ShowHp(player, monster);
 
-            do
+            while(monster.Hp>=0)
             {
                 Console.WriteLine($"\n\t>>You swing your sword and slash the monster! The monster loses {damageGiven} hp");
                 monster.Hp -= damageGiven;
+                Helper.PressEnter();
+                
                 Console.WriteLine($"\t>>AAAH! The monster rages towards you and hits you! You lose {damageTaken} hp");
                 player.Hp -= (damageTaken - player.Toughness);
+                Helper.PressEnter();
+                
                 Console.WriteLine($"\t>>You survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
                 monster.Hp -= damageGiven2;
+                Helper.PressEnter();
+                
                 Console.WriteLine($"\t>>But the monster is too fast and you get hit again, this time you lose {damageTaken2} hp");
                 player.Hp -= (damageTaken2 - player.Toughness);
                 Console.WriteLine();
+                Helper.PressEnter();
 
                 Helper.ShowHp(player, monster);
                 
                 if (monster.Hp <= 0)
                 {
                     monster.Hp = 0;
-                    Visual.ChangeToMagenta();
-                    Console.Write($"\nVICTORY!!");
-                    Console.ResetColor();
-                    Console.WriteLine($"You killed the monster and gained {monster.ExpGiven} exp.");
+                    MonsterKilled(monster);
                     player.Exp += monster.ExpGiven;
                     Monster.DropGold(player, monster);
-
-                    Visual.YellowLine();
-                    Console.WriteLine($"Level     : {player.Level}");
-                    Console.WriteLine($"Exp       : {player.Exp} exp");
-                    Console.WriteLine($"Hp        : {player.Hp} hp");
-                    Console.Write($"Gold      : {player.Gold}");
-                    Visual.YellowLine();
+                    Helper.ShowStats(player);
                     break;
                 }
                 else if (player.Hp <= 0)
                 {
                     player.Hp = 0;
-                    Visual.ChangeToCyan();
-                    Console.Write("GAME OVER :( ");
-                    Console.ResetColor();
-                    Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
+                    GameOver();
                     break;
                 }
-                //Helper.CheckIfAlive(monster, player);
-                //Helper.ShowHp(player, monster);
 
-                //Monster.DropGold(player, monster);
-                //Player.GetGold(player);
-
-                Helper.PressEnter();
+                Helper.EnterToContinue();
                 Console.Clear();
-            }
-            while (monster.Hp >= 0);
-            
+            }        
         }
+
+        private static void GameOver()
+        {
+            Visual.ChangeToCyan();
+            Console.Write("GAME OVER :'( ");
+            Console.ResetColor();
+            Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
+        }
+
+        private static void MonsterKilled(Monster monster)
+        {
+            Visual.ChangeToMagenta();
+            Console.Write($"\n VICTORY!! ");
+            Console.ResetColor();
+            Console.WriteLine($"You killed the monster and gained {monster.ExpGiven} exp.");
+        }
+
 
         private static void Randomizer(Player player, out int damageGiven, out int damageGiven2, out int damageTaken, out int damageTaken2)
         {

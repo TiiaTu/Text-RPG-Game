@@ -42,7 +42,11 @@ namespace Game_Tiia
         }
         internal static void ShopMenu()
         {
-            Console.WriteLine("");
+            Console.WriteLine(@"
+ [1] Amulet for better health
+ [2] Amulet for better defence
+
+>>");
         }
 
         internal static void StartScreen()
