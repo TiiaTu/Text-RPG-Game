@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Game_Tiia
 {
-    class Attack
+    class Fight
     {
-        public static void AttackMonster(Player player, SpecificMonster monster) //Själva slagsmålet
+        public static void AttackMonster(Player player, Monster monster) //Själva slagsmålet
         {
             int damageGiven, damageGiven2, damageTaken, damageTaken2;
-            NewMethod(player, out damageGiven, out damageGiven2, out damageTaken, out damageTaken2);
+            Randomizer(player, out damageGiven, out damageGiven2, out damageTaken, out damageTaken2);
 
-            while (true)
+            do
             {
                 Console.WriteLine($"\n\t>>You swing your sword and slash the monster! The monster loses {damageGiven} hp");
                 monster.Hp -= damageGiven;
@@ -25,15 +25,41 @@ namespace Game_Tiia
                 player.Hp -= (damageTaken2 - player.Toughness);
                 Console.WriteLine();
 
-                Helper.CheckIfAlive(monster, player);
+                Helper.ShowHp(player, monster);
+                
+                if (monster.Hp <= 0)
+                {
+                    monster.Hp = 0;
+                    Visual.ChangeToMagenta();
+                    Console.Write($"\nVICTORY!!");
+                    Console.ResetColor();
+                    Console.WriteLine($"You killed the monster and gained {monster.ExpGiven} exp.");
+                    player.Exp += monster.ExpGiven;
+                    Console.WriteLine($"\nLevel    : {player.Level}");
+                    Console.WriteLine($"Exp       : {player.Exp} exp");
+                    Console.WriteLine($"Hp        : {player.Hp} hp");
+                    break;
+                }
+                else if (player.Hp <= 0)
+                {
+                    player.Hp = 0;
+                    Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
+                    break;
+                }
+                //Helper.CheckIfAlive(monster, player);
                 //Helper.ShowHp(player, monster);
+
+                //Monster.DropGold(player, monster);
+                //Player.GetGold(player);
 
                 Helper.PressEnter();
                 Console.Clear();
             }
+            while (monster.Hp >= 0);
+            
         }
 
-        private static void NewMethod(Player player, out int damageGiven, out int damageGiven2, out int damageTaken, out int damageTaken2)
+        private static void Randomizer(Player player, out int damageGiven, out int damageGiven2, out int damageTaken, out int damageTaken2)
         {
             Random rnd = new Random();
             damageGiven = rnd.Next(player.Strenght, player.Strenght * 2);
@@ -41,7 +67,6 @@ namespace Game_Tiia
             damageTaken = rnd.Next(player.Strenght, player.Strenght * 2);
             damageTaken2 = rnd.Next(player.Strenght, player.Strenght * 2);
         }
-
     }
-    }
+}
 

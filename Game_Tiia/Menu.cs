@@ -19,9 +19,18 @@ namespace Game_Tiia
 
         public static void MainMenu()
         {
-            Console.WriteLine("\n 1. Go adventuring");
-            Console.WriteLine(" 2. Show details about your character");
-            Console.WriteLine(" 3. Exit Game\n");
+            Visual.ChangeToCyan();
+            Console.Write("\n  [1] ");
+            Console.ResetColor();
+            Console.WriteLine("Go adventuring");
+            Visual.ChangeToCyan();
+            Console.Write("  [2] ");
+            Console.ResetColor();
+            Console.WriteLine("Show details about your character");
+            Visual.ChangeToCyan();
+            Console.Write("  [3] ");
+            Console.ResetColor();
+            Console.WriteLine("Exit Game\n");
             Console.Write(">> ");
         }
 
