@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Game_Tiia
 {
-    class Helper //en klass för att kontrollera input och annat från användaren
+    class Check //en klass för att kontrollera och visa input och annat från användaren
     {
-        public static void CheckLevel(Player player) //spelaren uppnår en ny level när exp=100 och fåt 200 hp
+        public static void CheckLevel(Player player) //spelaren uppnår en ny level när exp=100 och får 200 hp
         {
             if (player.Exp >= 100)
             {
                 player.Level++;
                 player.Exp = 0;
                 player.Hp = 200;
-                Console.Write("\nCONGRATULATIONS you leveled up! ");
-                Console.WriteLine("You are now on level ");
+                Console.Write("\nCONGRATULATIONS! You leveled up! ");
+                Console.Write("You are now on level ");
                 Visual.ChangeToCyan();
                 Console.WriteLine($"{player.Level}");
                 Console.ResetColor();
-                Helper.PressEnter();
+                PressEnter();
                 Console.Clear();
             }
             else if (player.Level == 10)
@@ -42,7 +42,7 @@ namespace Game_Tiia
             Console.WriteLine();
         }
 
-        public static void EnterToContinue() //flytta eventuellt till Program?
+        public static void EnterToContinue()
         {
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\n[Press enter to continue]");
@@ -52,7 +52,7 @@ namespace Game_Tiia
 
             public static string DoYouWantToContinue()
         {
-            Console.Write("\nDo you want to continue the adventure? y/n) ");
+            Console.Write("\nDo you want to continue the adventure? y/n ");
             var input = Console.ReadLine().ToLower();
             return input;
         }

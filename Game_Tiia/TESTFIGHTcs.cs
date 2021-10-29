@@ -13,45 +13,24 @@ namespace Game_Tiia
             int damageGiven, damageGiven2, damageTaken, damageTaken2;
             Randomizer(player, out damageGiven, out damageGiven2, out damageTaken, out damageTaken2);
 
-            Helper.ShowHp(player, monster);
+            Check.ShowHp(player, monster);
 
             Random rnd = new Random();
             var fightScenario = rnd.Next(1, 4);
 
-            switch (fightScenario)
-            {
-                case 1: break;
-                case 2: break;
-                case 3: break;
-                default:
-                    break;
-            }
-
             while (monster.Hp >= 0)
             {
-                Visual.ChangeToCyan();
-                Console.WriteLine($"\n\tYou swing your sword and slash the monster! The monster loses {damageGiven} hp");
-                monster.Hp -= damageGiven;
-                Helper.PressEnter();
+                switch (fightScenario)
+                {
+                    case 1: BasicFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
+                    case 2: LongerFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
+                    case 3: break;
+                    default:
+                        break;
+                }
 
-                Visual.ChangeToMagenta();
-                Console.WriteLine($"\tAAAH! The monster rages towards you and hits you! You lose {damageTaken} hp");
-                player.Hp -= (damageTaken - player.Toughness);
-                Helper.PressEnter();
-
-                Visual.ChangeToCyan();
-                Console.WriteLine($"\tYou survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
-                monster.Hp -= damageGiven2;
-                Helper.PressEnter();
-
-                Visual.ChangeToMagenta();
-                Console.WriteLine($"\tBut the monster is too fast and you get hit again, this time you lose {damageTaken2} hp");
-                player.Hp -= (damageTaken2 - player.Toughness);
-                Console.ResetColor();
-
-                Helper.PressEnter();
-
-                Helper.ShowHp(player, monster);
+                Check.PressEnter();
+                Check.ShowHp(player, monster);
 
                 if (monster.Hp <= 0)
                 {
@@ -59,7 +38,7 @@ namespace Game_Tiia
                     MonsterKilled(monster);
                     player.Exp += monster.ExpGiven;
                     Monster.DropGold(player, monster);
-                    Helper.ShowStats(player);
+                    Check.ShowStats(player);
                     break;
                 }
                 else if (player.Hp <= 0)
@@ -69,9 +48,69 @@ namespace Game_Tiia
                     break;
                 }
 
-                Helper.EnterToContinue();
+                Check.EnterToContinue();
                 Console.Clear();
+            
             }
+        }
+
+        private static void LongerFight(Player player, Monster monster, int damageGiven, int damageGiven2, int damageTaken, int damageTaken2)
+        {
+            Visual.ChangeToMagenta();
+            Console.WriteLine($"\tYou draw your sword and run towards {monster.Name} ..but  and you miss! ");
+            Check.PressEnter();
+
+            Visual.ChangeToCyan();
+            Console.WriteLine($"\n\tThis seems to give the monster even more energy and before you realise it, you get punched right in to the chest!");
+            Check.PressEnter();
+
+            Console.WriteLine($"\n\tThis caughts you complitely of guard and you fall to the ground, and lose {damageTaken*2} hp");
+            player.Hp -= damageTaken * 2;
+            Check.PressEnter();
+
+            Console.WriteLine($"Before you have time to get up {monster.Name} lifts you up to the air and tosses you like a ragdoll.. things are not looking good for you");
+            GiveUp();
+            Check.PressEnter();
+
+            Visual.ChangeToMagenta();
+            Console.WriteLine($"\tBut the monster is fast and you get hit again, this time you lose {damageTaken2} hp");
+            player.Hp -= (damageTaken2 - player.Toughness);
+            Check.PressEnter();
+
+            Visual.ChangeToCyan();
+            Console.WriteLine($"\tYou survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
+            monster.Hp -= damageGiven2;
+            Console.ResetColor();
+            Check.PressEnter();
+        }
+
+        private static void GiveUp() //om situationen ser alldeles för hopplöst ut
+        {
+            Console.WriteLine("There is a possibility to left the fight by escaping but ");
+        }
+
+        private static void BasicFight(Player player, Monster monster, int damageGiven, int damageGiven2, int damageTaken, int damageTaken2)
+        {
+            Visual.ChangeToMagenta();
+            Console.WriteLine($"\tAAAH! The monster rages towards you and hits you! You lose {damageTaken} hp");
+            player.Hp -= (damageTaken - player.Toughness);
+            Check.PressEnter();
+
+            Visual.ChangeToCyan();
+            Console.WriteLine($"\n\tYou swing your sword and slash the monster! The monster loses {damageGiven} hp");
+            monster.Hp -= damageGiven;
+            Check.PressEnter();
+
+            Visual.ChangeToMagenta();
+            Console.WriteLine($"\tBut the monster is fast and you get hit again, this time you lose {damageTaken2} hp");
+            player.Hp -= (damageTaken2 - player.Toughness);
+            Check.PressEnter();
+
+            Visual.ChangeToCyan();
+            Console.WriteLine($"\tYou survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
+            monster.Hp -= damageGiven2;
+            Console.ResetColor();
+            Check.PressEnter();         
         }
 
         private static void GameOver(Player player)
@@ -120,4 +159,4 @@ namespace Game_Tiia
         }
     }
 }
-}
+

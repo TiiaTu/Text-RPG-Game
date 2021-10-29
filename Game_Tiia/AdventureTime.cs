@@ -9,32 +9,20 @@ namespace Game_Tiia
         {
             WelcomeToForest();
 
-            while (true)
+            while (true) //loop för äventyret
             {
                 Visual.WanderingAround();
                 int monsterOrNot = Randomizer();
 
                 switch (monsterOrNot)
                 {
-                    case 1:
-                        Message("It's so quiet and peaceful... a little bit too quiet maybe, but no monsters on sight lyckily.. \nEnjoy while you can!");
-                        break;
-                    case 5:
-                        Message("\nOh look! You meet another travelers that turns out to be extremely friendly! \nYou chat with them and regain some of your powers! \nIn exchange for some food, they give you a peace of GOLD!");
-                        player.Gold++;
-                        player.Hp += 10;
-                        break;
-                    case 7:
-                        Message("You start to feel exhausted and decide stop and rest for a while. \nSomething caughts your attention.. sounds like running water! \nYou proceed to check where it's coming from and find a small stream of water. \nYou take a sip from the stream and gain 25 hp! ");
-                        player.Hp += 25;
-                        break;
-                    default:
-                        MonsterEncounter(player);
-                        Helper.CheckLevel(player);
-                        break;
+                    case 1: NoMonsters(); break;
+                    case 5: MeetTravelers(player); break;
+                    case 7: RestTime(player); break;
+                    default: MonsterEncounter(player); Check.CheckLevel(player); break;
                 }
 
-                string input = Helper.DoYouWantToContinue(); //ger en möjlighet att avbryta äventyret
+                string input = Check.DoYouWantToContinue(); //ger en möjlighet att avbryta äventyret
 
                 if (input == "y") continue;
                 else if (input == "n") break;
@@ -98,6 +86,24 @@ namespace Game_Tiia
             var monsterOrNot = rand.Next(1, 11);
             Console.WriteLine(monsterOrNot); //TA BORT I SLUTET
             return monsterOrNot;
+        }
+
+        private static void RestTime(Player player)
+        {
+            Message("You start to feel exhausted and decide stop and rest for a while. \nSomething caughts your attention.. sounds like running water! \nYou proceed to check where it's coming from and find a small stream of water. \nYou take a sip from the stream and gain 25 hp! ");
+            player.Hp += 25;
+        }
+
+        private static void MeetTravelers(Player player)
+        {
+            Message("\nOh look! You meet another travelers that turns out to be extremely friendly! \nYou chat with them and regain some of your powers! \nIn exchange for some food, they give you a peace of GOLD!");
+            player.Gold++;
+            player.Hp += 10;
+        }
+
+        private static void NoMonsters()
+        {
+            Message("It's so quiet and peaceful... a little bit too quiet maybe, but no monsters on sight lyckily.. \nEnjoy while you can!");
         }
 
         private static void Message(string message)

@@ -15,7 +15,7 @@ namespace Game_Tiia
         public static void GetGold(Player player, int amountGold)
         {
             player.Gold+=amountGold;
-            Console.WriteLine($"You got {amountGold} gold, and have now {player.Gold} gold");
+            Console.WriteLine($"You got {amountGold} gold");
         }
 
         public static void GiveGold(Player player, int amountGold)

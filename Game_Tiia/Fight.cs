@@ -13,33 +13,33 @@ namespace Game_Tiia
             int damageGiven, damageGiven2, damageTaken, damageTaken2;
             Randomizer(player, out damageGiven, out damageGiven2, out damageTaken, out damageTaken2);
             
-            Helper.ShowHp(player, monster);
+            Check.ShowHp(player, monster);
 
             while(monster.Hp>=0)
             {
                 Visual.ChangeToCyan();
                 Console.WriteLine($"\n\tYou swing your sword and slash the monster! The monster loses {damageGiven} hp");
                 monster.Hp -= damageGiven;
-                Helper.PressEnter();
+                Check.PressEnter();
 
                 Visual.ChangeToMagenta();
                 Console.WriteLine($"\tAAAH! The monster rages towards you and hits you! You lose {damageTaken} hp");
                 player.Hp -= (damageTaken - player.Toughness);
-                Helper.PressEnter();
+                Check.PressEnter();
 
                 Visual.ChangeToCyan();
                 Console.WriteLine($"\tYou survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
                 monster.Hp -= damageGiven2;
-                Helper.PressEnter();
+                Check.PressEnter();
 
                 Visual.ChangeToMagenta();
                 Console.WriteLine($"\tBut the monster is too fast and you get hit again, this time you lose {damageTaken2} hp");
                 player.Hp -= (damageTaken2 - player.Toughness);
                 Console.ResetColor();
 
-                Helper.PressEnter();
+                Check.PressEnter();
 
-                Helper.ShowHp(player, monster);
+                Check.ShowHp(player, monster);
                 
                 if (monster.Hp <= 0)
                 {
@@ -47,7 +47,7 @@ namespace Game_Tiia
                     MonsterKilled(monster);
                     player.Exp += monster.ExpGiven;
                     Monster.DropGold(player, monster);
-                    Helper.ShowStats(player);
+                    Check.ShowStats(player);
                     break;
                 }
                 else if (player.Hp <= 0)
@@ -57,7 +57,7 @@ namespace Game_Tiia
                     break;
                 }
 
-                Helper.EnterToContinue();
+                Check.EnterToContinue();
                 Console.Clear();
             }        
         }
@@ -66,13 +66,15 @@ namespace Game_Tiia
         {
             Console.Clear();
             Visual.ChangeToCyan();
-            Console.Write("GAME OVER :'( ");
+            
+            Menu.GameOver();
             Console.ResetColor();
+            
             Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
             Respawn(player);
         }
 
-        private static void Respawn(Player player)
+        private static void Respawn(Player player) //ger en till chans till spelaren, men inte helt gratis ;)
         {
             Console.WriteLine("Do you want to respawn? (cost: 50% of your gold and your exp will drop to 0) y/n");
             var userInput = Console.ReadLine();
@@ -90,9 +92,7 @@ namespace Game_Tiia
         private static void MonsterKilled(Monster monster)
         {
             Visual.ChangeToMagenta();
-            Console.WriteLine("\n═════════");
-            Console.Write($"\n ║ VICTORY!! ║");
-            Console.WriteLine("\n═════════");
+            Menu.Victory();
             Console.ResetColor();
             Console.WriteLine($"\nYou killed the monster and gained {monster.ExpGiven} exp.");
         }

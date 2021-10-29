@@ -36,7 +36,7 @@ namespace Game_Tiia
 
         private static string AskForName(Player player)
         {
-            Console.Write("Welcome traveler! What should we call you? ");
+            Console.Write("\nWelcome traveler! What should we call you? ");
             Visual.ChangeToCyan();
             player.Name = Console.ReadLine().ToString();
             Console.ResetColor();

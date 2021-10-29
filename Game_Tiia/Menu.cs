@@ -64,5 +64,25 @@ namespace Game_Tiia
             Console.ReadKey();
             Console.Clear();
         }
+
+        internal static void Victory()
+        {
+            Console.WriteLine(@"
+╦  ╦╦╔═╗╔╦╗╔═╗╦═╗╦ ╦
+╚╗╔╝║║   ║ ║ ║╠╦╝╚╦╝
+ ╚╝ ╩╚═╝ ╩ ╚═╝╩╚═ ╩ 
+");
+        }
+        internal static void GameOver()
+        {
+            Console.WriteLine(@"
+   ___   _   __  __ ___    _____   _____ ___ 
+  / __| /_\ |  \/  | __|  / _ \ \ / / __| _ \
+ | (_ |/ _ \| |\/| | _|  | (_) \ V /| _||   /
+  \___/_/ \_\_|  |_|___|  \___/ \_/ |___|_|_\
+                                             
+");
+        }
+
     }
 }
