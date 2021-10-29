@@ -23,18 +23,18 @@ namespace Game_Tiia
             Console.Write("\n  [1] ");
             Console.ResetColor();
             Console.WriteLine("Go adventuring");
-            
+
             Visual.ChangeToCyan();
             Console.Write("  [2] ");
             Console.ResetColor();
             Console.WriteLine("Show details about your character");
             Visual.ChangeToCyan();
-            
+
             Console.Write("  [3] ");
             Console.ResetColor();
             Console.WriteLine("Go to shop");
             Visual.ChangeToCyan();
-            
+
             Console.Write("  [4] ");
             Console.ResetColor();
             Console.WriteLine("Exit Game\n");
@@ -63,6 +63,15 @@ namespace Game_Tiia
             Console.WriteLine("\n                                [Press any key to Start]");
             Console.ReadKey();
             Console.Clear();
+        }
+
+        internal static void ShopHeader()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("\t╒═══════════════════════════════╕");
+            Console.WriteLine("\t╞            -SHOP-             ╡ ");
+            Console.WriteLine("\t╘═══════════════════════════════╛");
+            Console.ResetColor();
         }
 
         internal static void Victory()

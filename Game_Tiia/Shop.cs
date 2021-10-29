@@ -7,9 +7,11 @@ namespace Game_Tiia
     {
         internal static void ShopItems(Player player)
         {
+            Menu.MainHeader();
             Console.WriteLine("Welcome to the shop! Pick the item you want to purchase ");
             Console.WriteLine($"You have {player.Gold} gold.\n");
             Menu.ShopMenu();
+            
             int menuChoise = UserInput();
 
             switch (menuChoise)
@@ -22,9 +24,6 @@ namespace Game_Tiia
                     Console.WriteLine("Invalid option");
                     break;
             }
-
-
-
 
             //Player.GiveGold();
         }

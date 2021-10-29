@@ -50,7 +50,7 @@ namespace Game_Tiia
 
                 Check.EnterToContinue();
                 Console.Clear();
-            
+
             }
         }
 
@@ -64,30 +64,35 @@ namespace Game_Tiia
             Console.WriteLine($"\n\tThis seems to give the monster even more energy and before you realise it, you get punched right in to the chest!");
             Check.PressEnter();
 
-            Console.WriteLine($"\n\tThis caughts you complitely of guard and you fall to the ground, and lose {damageTaken*2} hp");
+            Console.WriteLine($"\n\tThis caughts you complitely of guard and you fall to the ground, and lose {damageTaken * 2} hp");
             player.Hp -= damageTaken * 2;
             Check.PressEnter();
 
             Console.WriteLine($"Before you have time to get up {monster.Name} lifts you up to the air and tosses you like a ragdoll.. things are not looking good for you");
             GiveUp();
+            Check.EnterToContinue();
             Check.PressEnter();
-
-            Visual.ChangeToMagenta();
-            Console.WriteLine($"\tBut the monster is fast and you get hit again, this time you lose {damageTaken2} hp");
-            player.Hp -= (damageTaken2 - player.Toughness);
-            Check.PressEnter();
-
-            Visual.ChangeToCyan();
-            Console.WriteLine($"\tYou survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
-            monster.Hp -= damageGiven2;
+            
             Console.ResetColor();
             Check.PressEnter();
         }
 
         private static void GiveUp() //om situationen ser alldeles för hopplöst ut
         {
-            Console.WriteLine("There is a possibility to left the fight by escaping but ");
+            Console.WriteLine("You have a slight chance to escape if you start to run now!! Do you want to use the opportunity? y/n");
+            Visual.Countdown();
+            var userInput = Console.ReadLine();
+            if (userInput == "y")
+            {
+                return;
+            }
+            else if(userInput == "n")
+            {
+                //kod här 
+            }
         }
+
+
 
         private static void BasicFight(Player player, Monster monster, int damageGiven, int damageGiven2, int damageTaken, int damageTaken2)
         {
@@ -110,7 +115,7 @@ namespace Game_Tiia
             Console.WriteLine($"\tYou survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
             monster.Hp -= damageGiven2;
             Console.ResetColor();
-            Check.PressEnter();         
+            Check.PressEnter();
         }
 
         private static void GameOver(Player player)

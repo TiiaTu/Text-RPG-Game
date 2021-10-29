@@ -44,5 +44,16 @@ namespace Game_Tiia
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("---------------------------\n");
         }
+
+        internal static void Countdown()
+        {
+            ChangeToCyan();
+            for (int i = 5; i > 0; i--)
+            {
+                Console.Write("\t" + i + "\n");
+                Thread.Sleep(1000);
+                Console.Clear();
+            }
+        }
     }
 }
