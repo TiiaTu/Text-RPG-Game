@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game_Tiia
 {
-    class Helper //en klass för att kontrollera olika användarrelaterade saker
+    class Helper //en klass för att kontrollera input och annat från användaren
     {
         public static void CheckLevel(Player player) //spelaren uppnår en ny level när exp=100 och fåt 200 hp
         {
@@ -52,30 +52,25 @@ namespace Game_Tiia
 
             public static string DoYouWantToContinue()
         {
-            Console.Write("\n-Do you want to continue the adventure?- (Y/N) ");
-            var input = Console.ReadLine().ToUpper();
+            Console.Write("\nDo you want to continue the adventure? y/n) ");
+            var input = Console.ReadLine().ToLower();
             return input;
         }
 
         public static void ShowHp(Player player, Monster monster) //visar HP på både spelare och monstret
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($"\t{player.Name}: {player.Hp} hp");
-            Console.ResetColor();
-            Console.Write("  |VS| ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($" {monster.Name}: {monster.Hp} hp \n");
-            Console.ResetColor();
+            Console.WriteLine($"\n\t{player.Name}: {player.Hp} hp |VS| {monster.Name}: {monster.Hp} hp ");
+            Console.WriteLine("\t═══════════════════════════════════════════════════════");
         }
 
         public static void ShowStats(Player player)
         {
-            Visual.YellowLine();
+            Visual.BlueLine();
             Console.WriteLine($"Level     : {player.Level}");
             Console.WriteLine($"Exp       : {player.Exp} exp");
             Console.WriteLine($"Hp        : {player.Hp} hp");
             Console.Write($"Gold      : {player.Gold}");
-            Visual.YellowLine();
+            Visual.BlueLine();
         }
     }
 }

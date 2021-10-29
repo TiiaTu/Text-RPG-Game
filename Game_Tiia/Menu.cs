@@ -11,9 +11,9 @@ namespace Game_Tiia
         public static void MainHeader()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("╒═══════════════════════════════╕");
-            Console.WriteLine("╞          -THE GAME-           ╡ ");
-            Console.WriteLine("╘═══════════════════════════════╛");
+            Console.WriteLine("\t╒═══════════════════════════════╕");
+            Console.WriteLine("\t╞          -THE GAME-           ╡ ");
+            Console.WriteLine("\t╘═══════════════════════════════╛");
             Console.ResetColor();
         }
 
@@ -42,11 +42,11 @@ namespace Game_Tiia
         }
         internal static void ShopMenu()
         {
-            Console.WriteLine(@"
- [1] Amulet for better health
- [2] Amulet for better defence
-
->>");
+            Console.WriteLine(" [1] | Attack Amulet  | + 5 strength  | - 100 gold |");
+            Console.WriteLine(" [2] | Defense Amulet | + 2 toughness | - 100 gold |");
+            Console.WriteLine(" [3] | Gold           | + 25 gold     | - 50 exp   |");
+            Console.WriteLine(" [4] | Exit shop      |");
+            Console.Write(">>");
         }
 
         internal static void StartScreen()
@@ -54,11 +54,11 @@ namespace Game_Tiia
             Console.SetCursorPosition(75, 5);
             Visual.ChangeToMagenta();
             Console.WriteLine();
-            Console.WriteLine("     __________   __     __   ________       __________   ________   ___    ___   ________ ");
-            Console.WriteLine("    |___    ___| |  |___|  | |   _____|     |  ________| |   __   | |   |  |   | |   _____| ");
-            Console.WriteLine("        |  |     |   ___   | |  |___        |  |  _____  |  |__|  | |    ||    | |  |___   ");
-            Console.WriteLine("        |  |     |  |   |  | |  |_____      |  |____|  | |   __   | |  | __ |  | |  |_____ ");
-            Console.WriteLine("        |__|     |__|   |__| |________|     |__________| |__|  |__| |__|    |__| |________|");
+            Console.WriteLine("     __________   __     __   ________       _________   ________   ___    ___   ________ ");
+            Console.WriteLine("    |___    ___| |  |___|  | |   _____|     |  _______| |   __   | |   |  |   | |   _____| ");
+            Console.WriteLine("        |  |     |   ___   | |  |___        |  |  ____  |  |__|  | |    ||    | |  |___   ");
+            Console.WriteLine("        |  |     |  |   |  | |  |_____      |  |___|  | |   __   | |  | __ |  | |  |_____ ");
+            Console.WriteLine("        |__|     |__|   |__| |________|     |_________| |__|  |__| |__|    |__| |________|");
             Visual.ChangeToCyan();
             Console.WriteLine("\n                                [Press any key to Start]");
             Console.ReadKey();

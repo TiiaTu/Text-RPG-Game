@@ -21,8 +21,8 @@ namespace Game_Tiia
                 {
                     case 1: AdventureTime.WhileOnAdventure(player); break;
                     case 2: ShowDetails(player.Name, player.Level, player.Exp, player.Hp, player.Gold, player.Strenght, player.Toughness); break;
-                    case 3: Shop.ShopItems(); break;
-                    case 4: Environment.Exit(0); break;
+                    case 3: Shop.ShopItems(player); break;
+                    case 4: Console.WriteLine("Thank you for playing!"); Environment.Exit(0); break;
 
                     default: break;
                 }

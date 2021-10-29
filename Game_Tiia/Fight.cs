@@ -17,21 +17,26 @@ namespace Game_Tiia
 
             while(monster.Hp>=0)
             {
+                Visual.ChangeToCyan();
                 Console.WriteLine($"\n\t>>You swing your sword and slash the monster! The monster loses {damageGiven} hp");
                 monster.Hp -= damageGiven;
                 Helper.PressEnter();
-                
+
+                Visual.ChangeToMagenta();
                 Console.WriteLine($"\t>>AAAH! The monster rages towards you and hits you! You lose {damageTaken} hp");
                 player.Hp -= (damageTaken - player.Toughness);
                 Helper.PressEnter();
-                
+
+                Visual.ChangeToCyan();
                 Console.WriteLine($"\t>>You survive the hit, make a skillfull maneuver and succeed in hitting the monster again. \n\tThe monster loses {damageGiven2} hp ");
                 monster.Hp -= damageGiven2;
                 Helper.PressEnter();
-                
+
+                Visual.ChangeToMagenta();
                 Console.WriteLine($"\t>>But the monster is too fast and you get hit again, this time you lose {damageTaken2} hp");
                 player.Hp -= (damageTaken2 - player.Toughness);
-                Console.WriteLine();
+                Console.ResetColor();
+
                 Helper.PressEnter();
 
                 Helper.ShowHp(player, monster);
@@ -48,7 +53,7 @@ namespace Game_Tiia
                 else if (player.Hp <= 0)
                 {
                     player.Hp = 0;
-                    GameOver();
+                    GameOver(player);
                     break;
                 }
 
@@ -57,20 +62,39 @@ namespace Game_Tiia
             }        
         }
 
-        private static void GameOver()
+        private static void GameOver(Player player)
         {
+            Console.Clear();
             Visual.ChangeToCyan();
             Console.Write("GAME OVER :'( ");
             Console.ResetColor();
             Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
+            Respawn(player);
+        }
+
+        private static void Respawn(Player player)
+        {
+            Console.WriteLine("Do you want to respawn? (cost: 50% of your gold and your exp will drop to 0) y/n");
+            var userInput = Console.ReadLine();
+            if(userInput=="y")
+            {
+                player.Gold -= (player.Gold * 1/2);
+                player.Exp = 0;
+            }
+            if(userInput=="n")
+            {
+                return;
+            }           
         }
 
         private static void MonsterKilled(Monster monster)
         {
             Visual.ChangeToMagenta();
-            Console.Write($"\n VICTORY!! ");
+            Console.WriteLine("\n═════════");
+            Console.Write($"\n ║ VICTORY!! ║");
+            Console.WriteLine("\n═════════");
             Console.ResetColor();
-            Console.WriteLine($"You killed the monster and gained {monster.ExpGiven} exp.");
+            Console.WriteLine($"\nYou killed the monster and gained {monster.ExpGiven} exp.");
         }
 
 

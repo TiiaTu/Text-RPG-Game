@@ -36,9 +36,9 @@ namespace Game_Tiia
 
                 string input = Helper.DoYouWantToContinue(); //ger en möjlighet att avbryta äventyret
 
-                if (input == "Y") continue;
-                else if (input == "N") break;
-                else Message("Enter 'Y' or 'N' "); Console.ReadLine(); Console.Clear();
+                if (input == "y") continue;
+                else if (input == "n") break;
+                else Message("Enter 'y' or 'n' "); Console.ReadLine(); Console.Clear();
             }
                 Console.Clear();          
         }

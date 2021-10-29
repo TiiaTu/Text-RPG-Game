@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game_Tiia
 {
-    class Visual
+    class Visual //Metoder för att ändra färgen på text och andra visuella grejer
     {
         public static void WanderingAround() //ser lite ut som små fotsteg (?)
         {
@@ -22,28 +22,26 @@ namespace Game_Tiia
             }
             Console.WriteLine();
             Console.ResetColor();
-            Console.WriteLine("══════════════════════════════");
             Console.Clear();
         }
 
-        
-
-        public static void ChangeToCyan() //ändrar färgen på texten till cyan
+        public static void ChangeToCyan()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
         }
-        public static void ChangeToMagenta() //ändrar färgen på texten till magenta
+        public static void ChangeToMagenta()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
         }
-        public static void YellowLine()
+        public static void BlueLine()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\n--------------------------");
             Console.ResetColor();
         }
         public static void SeparateLine()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("---------------------------\n");
         }
     }
