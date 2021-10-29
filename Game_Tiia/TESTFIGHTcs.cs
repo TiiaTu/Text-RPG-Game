@@ -6,16 +6,28 @@ using System.Threading.Tasks;
 
 namespace Game_Tiia
 {
-    class Fight
+    class TESTFIGHTcs
     {
         public static void AttackMonster(Player player, Monster monster) //Själva slagsmålet
         {
             int damageGiven, damageGiven2, damageTaken, damageTaken2;
             Randomizer(player, out damageGiven, out damageGiven2, out damageTaken, out damageTaken2);
-            
+
             Helper.ShowHp(player, monster);
 
-            while(monster.Hp>=0)
+            Random rnd = new Random();
+            var fightScenario = rnd.Next(1, 4);
+
+            switch (fightScenario)
+            {
+                case 1: break;
+                case 2: break;
+                case 3: break;
+                default:
+                    break;
+            }
+
+            while (monster.Hp >= 0)
             {
                 Visual.ChangeToCyan();
                 Console.WriteLine($"\n\tYou swing your sword and slash the monster! The monster loses {damageGiven} hp");
@@ -40,7 +52,7 @@ namespace Game_Tiia
                 Helper.PressEnter();
 
                 Helper.ShowHp(player, monster);
-                
+
                 if (monster.Hp <= 0)
                 {
                     monster.Hp = 0;
@@ -59,7 +71,7 @@ namespace Game_Tiia
 
                 Helper.EnterToContinue();
                 Console.Clear();
-            }        
+            }
         }
 
         private static void GameOver(Player player)
@@ -76,15 +88,15 @@ namespace Game_Tiia
         {
             Console.WriteLine("Do you want to respawn? (cost: 50% of your gold and your exp will drop to 0) y/n");
             var userInput = Console.ReadLine();
-            if(userInput=="y")
+            if (userInput == "y")
             {
-                player.Gold -= (player.Gold * 1/2);
+                player.Gold -= (player.Gold * 1 / 2);
                 player.Exp = 0;
             }
-            if(userInput=="n")
+            if (userInput == "n")
             {
                 return;
-            }           
+            }
         }
 
         private static void MonsterKilled(Monster monster)
@@ -108,4 +120,4 @@ namespace Game_Tiia
         }
     }
 }
-
+}

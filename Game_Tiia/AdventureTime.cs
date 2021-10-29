@@ -50,13 +50,13 @@ namespace Game_Tiia
             if (level < 3)
             {
                 Monster monster1 = new();
-                monster1.Name = "Goblin with stinky feet";
+                monster1.Name = "Goblin";
                 monster1.Hp = 50;
                 monster1.ExpGiven = 60;
                 Message($"You stumble across an old and crumpy-looking {monster1.Name}! He looks kind of hungry...  Good luck! ");
                 Fight.AttackMonster(player, monster1);
             }
-            else if (level > 3 && level <= 6)
+            else if (level <= 6)
             {
                 Monster monster2 = new();
                 monster2.Name = "Troll";
@@ -65,16 +65,16 @@ namespace Game_Tiia
                 Message($"While strolling in the woods you suddenly hear steps behind you... \nYou turn around and see an extremely hideous {monster2.Name} charging straight towards you! ");
                 Fight.AttackMonster(player, monster2);
             }
-            else if (level > 6 && level <= 8)
+            else if (level <= 8)
             {
                 Monster monster3 = new();
-                monster3.Name = "Orc with an axe";
+                monster3.Name = "Orc";
                 monster3.Hp = 105;
                 monster3.ExpGiven = 75;
                 Message($"It starts to rain and you seek for a better cover. \nWhile running around you happen to cross paths with an orc on a hunt.. \n..Here we go again! ");
                 Fight.AttackMonster(player, monster3);
             }
-            else
+            else if (level<10)
             {
                 Monster bossMonster = new();
                 bossMonster.Name = "Giant";
@@ -82,8 +82,7 @@ namespace Game_Tiia
                 bossMonster.ExpGiven = 95;
                 Message($"You have fought bravely and decide to take a well-earned break. Of course right at the same exact moment you... ");
                 Fight.AttackMonster(player, bossMonster);
-            }
-            
+            }          
         }
 
         private static void WelcomeToForest() //Början av äventyret
