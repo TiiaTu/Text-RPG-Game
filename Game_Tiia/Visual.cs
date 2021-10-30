@@ -48,11 +48,12 @@ namespace Game_Tiia
         internal static void Countdown()
         {
             ChangeToCyan();
+            Thread.Sleep(1000);
+
             for (int i = 5; i > 0; i--)
             {
-                Console.Write("\t" + i + "\n");
+                Console.Write(i + "...");
                 Thread.Sleep(1000);
-                Console.Clear();
             }
         }
     }

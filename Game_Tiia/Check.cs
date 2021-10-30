@@ -16,6 +16,7 @@ namespace Game_Tiia
                 player.Level++;
                 player.Exp = 0;
                 player.Hp = 200;
+                player.Strenght++;
                 Console.Write("\nCONGRATULATIONS! You leveled up! ");
                 Console.Write("You are now on level ");
                 Visual.ChangeToCyan();

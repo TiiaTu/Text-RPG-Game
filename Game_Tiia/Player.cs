@@ -8,7 +8,7 @@ namespace Game_Tiia
         public int Hp { get; set; } = 200;
         public int Level { get; set; } = 1;
         public int Exp { get; set; } = 0;
-        public int Strenght { get; set; } = 5;
+        public int Strenght { get; set; } = 0;
         public int Toughness { get; set; } = 0;
         public int Gold { get; set; } = 20;
 
