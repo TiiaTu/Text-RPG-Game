@@ -15,18 +15,17 @@ namespace Game_Tiia
 
             Check.ShowHp(player, monster);
 
-            Random rnd = new Random();
-            var fightScenario = rnd.Next(1, 4);
-
             while (monster.Hp >= 0)
             {
+                Random rnd = new Random();
+                var fightScenario = rnd.Next(1, 4);
+
                 switch (fightScenario)
                 {
                     case 1: BasicFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
                     case 2: LongerFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
-                    case 3: break;
-                    default:
-                        break;
+                    case 3: MonsterWantsGold(player, monster); break;
+                    default: Console.WriteLine("Invalid input"); break;
                 }
 
                 Check.PressEnter();
@@ -50,50 +49,9 @@ namespace Game_Tiia
 
                 Check.EnterToContinue();
                 Console.Clear();
-
             }
         }
-
-        private static void LongerFight(Player player, Monster monster, int damageGiven, int damageGiven2, int damageTaken, int damageTaken2)
-        {
-            Visual.ChangeToMagenta();
-            Console.WriteLine($"\tYou draw your sword and run towards {monster.Name} ..but  and you miss! ");
-            Check.PressEnter();
-
-            Visual.ChangeToCyan();
-            Console.WriteLine($"\n\tThis seems to give the monster even more energy and before you realise it, you get punched right in to the chest!");
-            Check.PressEnter();
-
-            Console.WriteLine($"\n\tThis caughts you complitely of guard and you fall to the ground, and lose {damageTaken * 2} hp");
-            player.Hp -= damageTaken * 2;
-            Check.PressEnter();
-
-            Console.WriteLine($"Before you have time to get up {monster.Name} lifts you up to the air and tosses you like a ragdoll.. things are not looking good for you");
-            GiveUp();
-            Check.EnterToContinue();
-            Check.PressEnter();
-            
-            Console.ResetColor();
-            Check.PressEnter();
-        }
-
-        private static void GiveUp() //om situationen ser alldeles för hopplöst ut
-        {
-            Console.WriteLine("You have a slight chance to escape if you start to run now!! Do you want to use the opportunity? y/n");
-            Visual.Countdown();
-            var userInput = Console.ReadLine();
-            if (userInput == "y")
-            {
-                return;
-            }
-            else if(userInput == "n")
-            {
-                //kod här 
-            }
-        }
-
-
-
+        //---------------första scenario------------------------------------------------------
         private static void BasicFight(Player player, Monster monster, int damageGiven, int damageGiven2, int damageTaken, int damageTaken2)
         {
             Visual.ChangeToMagenta();
@@ -117,6 +75,53 @@ namespace Game_Tiia
             Console.ResetColor();
             Check.PressEnter();
         }
+        //-----------------andra scenario----------------------------------------------------------
+
+        private static void LongerFight(Player player, Monster monster, int damageGiven, int damageGiven2, int damageTaken, int damageTaken2)
+        {
+            Visual.ChangeToMagenta();
+            Console.WriteLine($"\tYou draw your sword and run towards {monster.Name} ..but  and you miss! ");
+            Check.PressEnter();
+
+            Visual.ChangeToCyan();
+            Console.WriteLine($"\n\tThis seems to give the monster even more energy and before you realise it, you get punched right in to the chest!");
+            Check.PressEnter();
+
+            Console.WriteLine($"\n\tThis caughts you complitely of guard and you fall to the ground, and lose {damageTaken * 2} hp");
+            player.Hp -= damageTaken * 2;
+            Check.PressEnter();
+
+            Console.WriteLine($"Before you have time to get up {monster.Name} lifts you up to the air and tosses you like a ragdoll.. things are not looking good for you");
+            GiveUp();
+            Check.EnterToContinue();
+            Check.EnterToContinue();
+            Check.PressEnter();
+        }
+        //--------------------tredje scenario------------------------------------------------------------------ 
+
+        private static void MonsterWantsGold(Player player, Monster monster)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void GiveUp() //om situationen ser alldeles för hopplöst ut
+        {
+            Console.WriteLine("You have a slight chance to escape if you start to run now!! Do you want to use the opportunity? y/n");
+            Visual.Countdown();
+            var userInput = Console.ReadLine();
+            if (userInput == "y")
+            {
+                return;
+            }
+            else if(userInput == "n")
+            {
+                //kodhär
+            }
+        }
+
+
+
+        
 
         private static void GameOver(Player player)
         {
@@ -157,6 +162,7 @@ namespace Game_Tiia
         private static void Randomizer(Player player, out int damageGiven, out int damageGiven2, out int damageTaken, out int damageTaken2)
         {
             Random rnd = new Random();
+           
             damageGiven = rnd.Next(player.Strenght, player.Strenght * 2);
             damageGiven2 = rnd.Next(player.Strenght, player.Strenght * 2);
             damageTaken = rnd.Next(player.Strenght, player.Strenght * 2);
