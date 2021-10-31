@@ -48,6 +48,28 @@ namespace Game_Tiia
             Console.WriteLine(" [4] | Exit shop      |");
             Console.Write(">>");
         }
+        internal static void FightMenu()
+        {
+            Visual.ChangeToCyan();
+            Console.Write("\n  [1] ");
+            Console.ResetColor();
+            Console.WriteLine("Stay safe and run away before he sees you!");
+
+            Visual.ChangeToCyan();
+            Console.Write("  [2] ");
+            Console.ResetColor();
+            Console.WriteLine("Try to approach him calmly");
+            Visual.ChangeToCyan();
+
+            Console.Write("  [3] ");
+            Console.ResetColor();
+            Console.WriteLine("Attack the Shaman and steal his gold!");
+            Visual.ChangeToCyan();
+
+            Console.Write(">>");
+
+        }
+
 
         internal static void StartScreen()
         {

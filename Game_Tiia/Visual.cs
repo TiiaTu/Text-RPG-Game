@@ -45,6 +45,17 @@ namespace Game_Tiia
             Console.WriteLine("---------------------------\n");
         }
 
+        internal static void PointPoint()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write(". ");
+                Thread.Sleep(500);
+            }
+        }
+
+
+
         //internal static void Countdown()
         //{
         //    ChangeToCyan();

@@ -27,7 +27,7 @@ namespace Game_Tiia
                 switch (fightScenario)
                 {
                     case 1: FightScenario.LongerFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break; 
-                    case 2: FightScenario.MonsterWantsGold(player, monster); break; 
+                    case 2: FightScenario.FightOptions(player, monster); break; 
                     default: FightScenario.BasicFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
                 }
 
