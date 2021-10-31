@@ -45,6 +45,20 @@ namespace Game_Tiia
             Console.WriteLine("---------------------------\n");
         }
 
+        public static void MagentaText(string text)
+        {
+            Visual.ChangeToMagenta();
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        public static void CyanText(string text)
+        {
+            Visual.ChangeToCyan();
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
         internal static void PointPoint()
         {
             for (int i = 0; i < 3; i++)
@@ -53,19 +67,5 @@ namespace Game_Tiia
                 Thread.Sleep(500);
             }
         }
-
-
-
-        //internal static void Countdown()
-        //{
-        //    ChangeToCyan();
-        //    Thread.Sleep(1000);
-
-        //    for (int i = 5; i > 0; i--)
-        //    {
-        //        Console.Write(i + "...");
-        //        Thread.Sleep(1000);
-        //    }
-        //}
     }
 }

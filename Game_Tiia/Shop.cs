@@ -24,8 +24,6 @@ namespace Game_Tiia
                     Console.WriteLine("Invalid option");
                     break;
             }
-
-            //Player.GiveGold();
         }
 
         private static void BuyGold(Player player)
@@ -102,6 +100,7 @@ namespace Game_Tiia
                     {
                         Console.WriteLine("Sorry we have nothing else to offer, goodbye!");
                         Thread.Sleep(500);
+                        Console.Clear();
                         return;
                     }
                 }

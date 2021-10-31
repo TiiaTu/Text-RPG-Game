@@ -64,6 +64,22 @@ namespace Game_Tiia
         {
             Console.WriteLine($"\n\t{player.Name}: {player.Hp} hp |VS| {monster.Name}: {monster.Hp} hp ");
             Console.WriteLine("\t═════════════════════════════");
+
+            if (monster.Hp <= 0)
+            {
+                monster.Hp = 0;
+                MonsterKilled(monster);
+                player.Exp += monster.ExpGiven;
+                Monster.DropGold(player, monster);
+                ShowStats(player);
+
+            }
+            else if (player.Hp <= 0)
+            {
+                player.Hp = 0;
+                GameOver(player);
+            }
+
         }
 
         public static void ShowStats(Player player)
@@ -75,5 +91,43 @@ namespace Game_Tiia
             Console.Write($"Gold      : {player.Gold}");
             Visual.BlueLine();
         }
+
+        public static void MonsterKilled(Monster monster)
+        {
+            Console.Clear();
+            Visual.ChangeToMagenta();
+            Menu.Victory();
+
+            Console.ResetColor();
+            Console.WriteLine($"\nYou killed the monster and gained {monster.ExpGiven} exp.");
+        }
+
+        public static void GameOver(Player player)
+        {
+            Console.Clear();
+            Visual.ChangeToCyan();
+
+            Menu.GameOver();
+            Console.ResetColor();
+
+            Console.WriteLine("\nYou fought bravely but that wasn't enough... you were KILLED by the monster!");
+            Respawn(player);
+        }
+
+        private static void Respawn(Player player) //ger en till chans till spelaren, men inte helt gratis ;)
+        {
+            Console.WriteLine("Do you want to respawn? (cost: all of your gold and exp) y/n");
+            var userInput = Console.ReadLine();
+            if (userInput == "y")
+            {
+                player.Gold = 0;
+                player.Exp = 0;
+            }
+            if (userInput == "n")
+            {
+                return;
+            }
+        }
     }
+
 }
