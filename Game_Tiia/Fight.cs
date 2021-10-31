@@ -24,7 +24,7 @@ namespace Game_Tiia
                 Random rnd = new Random();
                 var fightScenario = rnd.Next(1, 5);
 
-                switch (fightScenario)
+                switch (fightScenario) //FUNGERAR INTE SOM DET SKA
                 {
                     case 1: FightScenario.LongerFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
                     default: FightScenario.BasicFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
@@ -33,6 +33,7 @@ namespace Game_Tiia
                 Check.ShowHp(player, monster);
 
                 Check.EnterToContinue();
+                Check.CheckLevel(player);
                 Console.Clear();
             }
         }

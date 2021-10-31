@@ -33,8 +33,6 @@ namespace Game_Tiia
                 monster.Hp -= moreDamageToMonster;
                 Check.PressEnter();
 
-                Check.ShowHp(player, monster);
-                Check.PressEnter();
                 Console.Clear();
 
                 Visual.MagentaText("\tWhile the monster is down on the ground, you jump over it to finish the fight");
@@ -49,6 +47,7 @@ namespace Game_Tiia
                 player.Hp -= damageToPlayer;
                 monster.Hp -= damageToMonster;
 
+                
                 Check.ShowHp(player, monster);
 
                 if (monster.Hp <= 0)
@@ -58,15 +57,16 @@ namespace Game_Tiia
                     player.Exp += monster.ExpGiven;
                     Monster.DropGold(player, monster);
                     Check.ShowStats(player);
-
+                    break;
                 }
                 else if (player.Hp <= 0)
                 {
                     player.Hp = 0;
                     Check.GameOver(player);
                 }
+
             }
-            
+            return;
         }
 
         //-------------------------andra scenario----------------------------------------------------------
@@ -121,7 +121,23 @@ namespace Game_Tiia
                 }
 
                 Check.ShowHp(player, monster);
+                
+                if (monster.Hp <= 0)
+                {
+                    monster.Hp = 0;
+                    Check.MonsterKilled(monster);
+                    player.Exp += monster.ExpGiven;
+                    Monster.DropGold(player, monster);
+                    Check.ShowStats(player);
+                    break;
+                }
+                else if (player.Hp <= 0)
+                {
+                    player.Hp = 0;
+                    Check.GameOver(player);
+                }
             }
+            return;
         }
 
         private static void ContinueFight(Monster monster, Player player, int damageToPlayer, int damageToMonster, int moreDamageToMonster) //efter scenario 2 om spelaren väljer att fortsätta

@@ -16,14 +16,6 @@ namespace Game_Tiia
         {
             player.Gold+=amountGold;
         }
-
-        //public static void GiveGold(Player player, int amountGold)
-        //{
-        //    Console.WriteLine($"You have: {player.Gold} gold. How much gold do you want to give? ");            
-        //    int.TryParse(Console.ReadLine(), out amountGold);
-        //    Console.WriteLine(amountGold);
-        //    player.Gold -= amountGold;         
-        ////}
     }
 }
 
