@@ -22,14 +22,13 @@ namespace Game_Tiia
             while (monster.Hp >= 0)
             {
                 Random rnd = new Random();
-                var fightScenario = rnd.Next(1, 4);
+                var fightScenario = rnd.Next(1, 5);
 
                 switch (fightScenario)
                 {
-                    case 1: FightScenario.BasicFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
-                    case 2: FightScenario.LongerFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
-                    case 3: Fight3.MonsterWantsGold(player, monster); break;
-                    default: break;
+                    case 1: FightScenario.LongerFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break; 
+                    case 2: FightScenario.MonsterWantsGold(player, monster); break; 
+                    default: FightScenario.BasicFight(player, monster, damageGiven, damageGiven2, damageTaken, damageTaken2); break;
                 }
 
                 //Check.PressEnter();
@@ -73,13 +72,7 @@ namespace Game_Tiia
 
         
 
-        //--------------------tredje scenario------------------------------------------------------------------ 
-
-        private static void MonsterWantsGold(Player player, Monster monster)
-        {
-            Console.WriteLine("Nothing happens sorry");
-            return;
-        }
+        
 
         private static void GameOver(Player player)
         {

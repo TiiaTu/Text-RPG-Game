@@ -63,7 +63,7 @@ namespace Game_Tiia
         public static void ShowHp(Player player, Monster monster) //visar HP på både spelare och monstret
         {
             Console.WriteLine($"\n\t{player.Name}: {player.Hp} hp |VS| {monster.Name}: {monster.Hp} hp ");
-            Console.WriteLine("\t═══════════════════════════════════════════════════════");
+            Console.WriteLine("\t═════════════════════════════");
         }
 
         public static void ShowStats(Player player)

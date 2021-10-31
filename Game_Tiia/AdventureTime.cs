@@ -68,7 +68,10 @@ namespace Game_Tiia
                 bossMonster.Name = "Giant";
                 bossMonster.Hp = 150;
                 bossMonster.ExpGiven = 95;
-                Message($"You have fought bravely and decide to take a well-earned break. Of course right at the same exact moment you... ");
+                Message($"Out of nowhere you arrive to an open field in the middle of the forest. \nThere is no trees but one old crooked oak reaching towards the skies.");
+                Check.PressEnter();
+                Message($"You approach the oak and admire it's beauty... When suddenly you see movement in the corner of your eye! \nBefore you know it there is a huge {bossMonster.Name} staring right back at you!");
+                Message("I don't think it wants to chat...");
                 Fight.AttackMonster(player, bossMonster);
             }          
         }
@@ -90,15 +93,24 @@ namespace Game_Tiia
 
         private static void RestTime(Player player)
         {
-            Message("You start to feel exhausted and decide stop and rest for a while. \nSomething caughts your attention.. sounds like running water! \nYou proceed to check where it's coming from and find a small stream of water. \nYou take a sip from the stream and gain 25 hp! ");
+            Message("You start to feel exhausted and decide stop and rest for a while. \nSomething caughts your attention.. ");
+            Thread.Sleep(1000);
+            Message("Sounds like running water! You proceed to check where it's coming from and find a small stream of water.");
+            Check.PressEnter();
+            Message("You take a sip from the stream and gain 25 hp! ");
             player.Hp += 25;
         }
 
         private static void MeetTravelers(Player player)
         {
-            Message("\nOh look! You meet another travelers that turns out to be extremely friendly! \nYou chat with them and regain some of your powers! \nIn exchange for some food, they give you a peace of GOLD!");
+            Message("\nOh look! You meet another travelers that turns out to be extremely friendly! \nYou chat with them and regain some of your powers!");
+            Thread.Sleep(500);
+            Console.WriteLine("In exchange for some food, they give you a peace of GOLD!");
             player.Gold++;
             player.Hp += 10;
+            
+            Check.ShowStats(player);
+            
         }
 
         private static void NoMonsters()

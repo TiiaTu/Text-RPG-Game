@@ -7,7 +7,7 @@ namespace Game_Tiia
     {
         internal static void ShopItems(Player player)
         {
-            Menu.MainHeader();
+            Menu.ShopHeader();
             Console.WriteLine("Welcome to the shop! Pick the item you want to purchase ");
             Console.WriteLine($"You have {player.Gold} gold.\n");
             Menu.ShopMenu();
@@ -41,10 +41,10 @@ namespace Game_Tiia
 
         private static void AttackAmulet(Player player)
         {
-            if (player.Gold >= 100)
+            if (player.Gold >= 50)
             {
                 player.Strenght += 5;
-                player.Gold -= 100;
+                player.Gold -= 50;
             }
             else
             {
@@ -54,10 +54,10 @@ namespace Game_Tiia
         }
         private static void DefenceAmulet(Player player)
         {
-            if (player.Gold >= 100)
+            if (player.Gold >= 50)
             {
                 player.Toughness += 2;
-                player.Gold -= 100;
+                player.Gold -= 50;
             }
             else
             {
@@ -72,14 +72,14 @@ namespace Game_Tiia
             
             if (bargainOrNot=="y")
             {
-                Console.WriteLine("If you are willing to give up 25 exp points, you can get the amulet with 50 gold. \nDeal? y/n ");
+                Console.WriteLine("If you are willing to give up 25 exp points, you can get the amulet with 25 gold. \nDeal? y/n ");
                 var dealOrNot = Console.ReadLine().ToLower();
                 
                 if (dealOrNot=="y")
                 {
-                    Console.WriteLine("You bought an Attack Amulet (cost: 25 exp and 50 gold)");
+                    Console.WriteLine("You bought an Attack Amulet (cost: 25 exp and 25 gold)");
                     player.Exp -= 25;
-                    player.Gold -= 50;
+                    player.Gold -= 25;
                 }
                 else if (dealOrNot=="n")
                 {
@@ -88,7 +88,22 @@ namespace Game_Tiia
                         Console.Write(".");
                         Thread.Sleep(250);
                     }                   
-                    Console.WriteLine("Okay we might have something special for you... You get the Amulet for 25 gold, BUT \nyou have to also give 40 of your exp points and ");
+                    Console.WriteLine("Okay we might have something special for you... You get the Amulet for 10 gold, BUT \nyou have to also give 40 of your exp.");
+                    Console.WriteLine("This is your last change, do we have a deal? y/n");
+
+                    var lastDeal = Console.ReadLine().ToLower();
+                    if(lastDeal=="y")
+                    {
+                        Console.WriteLine("You bought an Attack Amulet (cost: 40 exp and 10 gold)");
+                        player.Exp -= 40;
+                        player.Gold -= 10;
+                    }
+                    else if (lastDeal=="n")
+                    {
+                        Console.WriteLine("Sorry we have nothing else to offer, goodbye!");
+                        Thread.Sleep(500);
+                        return;
+                    }
                 }
             }
             else if (bargainOrNot=="n")
