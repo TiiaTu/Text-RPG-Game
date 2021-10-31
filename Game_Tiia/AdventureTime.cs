@@ -41,7 +41,7 @@ namespace Game_Tiia
                 monster1.Name = "Goblin";
                 monster1.Hp = 50;
                 monster1.ExpGiven = 60;
-                Message($"You stumble across an old and crumpy-looking {monster1.Name}! He looks kind of hungry...  Good luck! ");
+                Message($"You stumble across an old and crumpy-looking {monster1.Name}! He looks kind of hungry...  Good luck!\n ");
                 Fight.AttackMonster(player, monster1);
             }
             else if (level <= 6)
